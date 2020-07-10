@@ -44,6 +44,7 @@ namespace ProxyScraper {
 				else link = "https://www.google.com/search?q=" + searchQuery + "&start=" + ((iter-1)*10);
 				if (iter != end) ++iter;
 				
+				
 				link = link.Replace(' ', '+');
 				
 				Program.debug(link);
@@ -55,12 +56,14 @@ namespace ProxyScraper {
 				try {
 					
 					HttpWebRequest rq = (HttpWebRequest)(WebRequest.Create(link));
-					rq.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36";
+					//rq.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36";
 					HttpWebResponse rp = (HttpWebResponse)rq.GetResponse();
 					s = rp.GetResponseStream();
 					
 				}
-				catch (Exception ex) { /*Banned(too many requests)probably*/ Program.debug(ex.ToString()); Thread.Sleep(30000);
+				catch (Exception ex) { /*Banned(too many requests)probably*/ Program.debug(ex.ToString()); Program.cm.updateStatus(Status.IDLE); Thread.Sleep(30000);
+					
+					Program.cm.updateStatus(Status.SEARCHING);
 					
 					try {
 					
@@ -70,7 +73,7 @@ namespace ProxyScraper {
 						s = rp.GetResponseStream();
 					
 					}
-					catch (Exception ex0) { Program.debug(ex0.ToString()); Thread.Sleep(60000); return new List<String>(); }
+					catch (Exception ex0) { Program.debug(ex0.ToString()); Program.cm.updateStatus(Status.IDLE); Thread.Sleep(60000); return new List<String>(); }
 					
 				}
 				
@@ -97,8 +100,10 @@ namespace ProxyScraper {
 	                    int x = v.IndexOf("&");
 	                    if (x == 0) continue;
 	                    string p = v.Substring(0, x).Replace("/url?q=", "");
+	                    
 	                    if (!(results.Contains(p)) && !(scrapedLinksArchive.Contains(p))) {
 	                    	
+	                    	Program.debug(p);
 		                    results.Add(p);
 		                    scrapedLinksArchive.Add(p); 
 		                    

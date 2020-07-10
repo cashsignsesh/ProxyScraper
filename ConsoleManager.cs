@@ -25,7 +25,9 @@ namespace ProxyScraper {
 			this.user = Environment.UserName;
 			this.title = "Proxy Scraper - " + this.user;
 			Console.Title = title;
+			#if !DEBUG
 			Console.CursorVisible = false;
+			#endif
 			
 			new Timer(state => updateTime(), null, 1000, 1000);
 			
@@ -58,7 +60,7 @@ namespace ProxyScraper {
 		
 		protected internal void updateProxies () {
 			
-			Console.SetCursorPosition(10, 4);
+			Console.SetCursorPosition(9, 4);
 			Console.Write(Program.proxiesScraped);
 			
 		}
@@ -67,7 +69,7 @@ namespace ProxyScraper {
 			
 			Program.status = status;
 			Console.SetCursorPosition(8, 5);
-			Console.Write((Program.status == Status.IDLE) ? "Idle" : (Program.status == Status.SEARCHING ? "Searching for links" : (Program.status == Status.SCRAPING ? "Scraping links for proxies" : (Program.status == Status.SAVING ? "Saving proxies to computer" : "Pinging proxies"))));
+			Console.Write((Program.status == Status.IDLE) ? "Idle" : (Program.status == Status.SEARCHING ? "Searching for links" : (Program.status == Status.SCRAPING ? "Scraping links for proxies" : (Program.status == Status.SAVING ? "Saving proxies to computer" : (Program.status == Status.PINGING ? "Pinging proxies" : "Done")))));
 			
 		}
 		

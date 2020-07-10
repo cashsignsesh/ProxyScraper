@@ -15,7 +15,7 @@ namespace ProxyScraper {
 	/// </summary>
 	public enum Status {
 		
-		IDLE, SEARCHING, SCRAPING, PINGING, SAVING
+		IDLE, SEARCHING, SCRAPING, PINGING, SAVING, DONE
 		
 	}
 	

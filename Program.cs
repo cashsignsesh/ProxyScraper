@@ -20,9 +20,8 @@ namespace ProxyScraper {
 		
 		internal static ConsoleManager cm = null;
 		private static Scraper s = null;
-		private static List<String> proxies = null;
+		internal static ProxyManager pm = null;
 		
-		//TODO:: proxy manager with ping check
 		//TODO:: optional search query settings?
 		//TODO:: release both ProxyScraper dev(Debug) and ProxyScraper release(Release) and HtmlAgilityPack.dll in release
 		
@@ -36,7 +35,7 @@ namespace ProxyScraper {
 		
 		private static void init () {
 			
-			proxies = new List<String>();
+			pm = new ProxyManager();
 			cm = new ConsoleManager();
 			s = new Scraper();
 			
