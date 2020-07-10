@@ -10,6 +10,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Threading;
+using System.Text;
 
 namespace ProxyScraper {
 	
@@ -22,14 +23,20 @@ namespace ProxyScraper {
 		private static Scraper s = null;
 		internal static ProxyManager pm = null;
 		
-		//TODO:: optional search query settings?
+		public static List<string> settingsLinks;
+		public static List<string> settingsQueries;
+		
+		//TODO:: settings files (links & search queries)
 		//TODO:: release both ProxyScraper dev(Debug) and ProxyScraper release(Release) and HtmlAgilityPack.dll in release
+		//TODO:: fix timer for update time (see TODO:: @ ConsoleManager.cs)
+		//TODO:: (maybe) search links already stored for more proxy-related links (href=contains("proxy"))??
 		
 		public static void Main (string[] args) {
 			
 			init();
 			cm.printBase();
 			new Thread(s.scrape).Start();
+			while(true){}
 			
 		}
 		
@@ -43,13 +50,22 @@ namespace ProxyScraper {
 				
 				Directory.CreateDirectory("./proxies/");
 				
-				if (!(File.Exists("./proxies/scraped.txt"))) File.Create("./proxies/scraped.txt");
+				if (!(File.Exists("./proxies/scraped.txt"))) File.Create("./proxies/scraped.txt").Close();
+				if (!(File.Exists("./links.txt"))) File.Create("./links.txt").Close();
+				if (!(File.Exists("./queries.txt"))) File.Create("./queries.txt").Close();
 				
 				#if DEBUG
-				if (!(File.Exists("./debug.txt"))) File.Create("./debug.txt");
+				if (!(File.Exists("./debug.txt"))) File.Create("./debug.txt").Close();
+				if (!(File.Exists("./proxies/debug_scraped.txt"))) File.Create("./proxies/debug_scraped.txt").Close();
 				#endif
 				
+				File.WriteAllText("./links.txt", Encoding.ASCII.GetString(cm.linksDefault));
+				File.WriteAllText("./queries.txt", Encoding.ASCII.GetString(cm.queriesDefault));
+				
 			}
+			
+			settingsLinks = new List<String>(File.ReadAllLines("./links.txt"));
+			settingsQueries = new List<String>(File.ReadAllLines("./queries.txt"));
 			
 		}
 		

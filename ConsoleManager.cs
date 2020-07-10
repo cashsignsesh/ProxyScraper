@@ -8,6 +8,9 @@
  */
 using System;
 using System.Threading;
+using System.Text;
+using System.IO;
+using System.Collections.Generic;
 
 namespace ProxyScraper {
 	
@@ -20,6 +23,9 @@ namespace ProxyScraper {
 		private readonly string title = null;
 		private int secondsElapsed = 0;
 		
+		public readonly byte[] linksDefault;
+		public readonly byte[] queriesDefault;
+		
 		public ConsoleManager () {
 			
 			this.user = Environment.UserName;
@@ -28,7 +34,12 @@ namespace ProxyScraper {
 			#if !DEBUG
 			Console.CursorVisible = false;
 			#endif
-			
+			linksDefault = Encoding.ASCII.GetBytes(@"https://github.com/clarketm/proxy-list/blob/master/proxy-list-raw.txt
+https://github.com/a2u/free-proxy-list/blob/master/free-proxy-list.txt
+https://github.com/hookzof/socks5_list/blob/master/proxy.txt");
+			queriesDefault = Encoding.ASCII.GetBytes(@"proxies
+socks list");
+				
 			new Timer(state => updateTime(), null, 1000, 1000);
 			
 		}
@@ -36,7 +47,7 @@ namespace ProxyScraper {
 		public void printBase () {
 			
 			Console.WriteLine(title + " - " + DateTime.Now + " (Time Elapsed: " + secondsElapsed + "s)");
-			Console.WriteLine("Proxy scraping will commence in 20 seconds.");
+			Console.WriteLine("Proxy scraping will commence at 20 seconds.");
 			Console.WriteLine("Any data in ./proxies/scraped.txt will be overwritten.");
 			
 			Thread.Sleep(20745);
@@ -47,6 +58,7 @@ namespace ProxyScraper {
 			
 		}
 		
+		//TODO:: fix, this freezes at 20-30s usually
 		protected internal void updateTime () {
 			
 			DateTime dt = DateTime.Now;
@@ -68,8 +80,10 @@ namespace ProxyScraper {
 		protected internal void updateStatus (Status status) {
 			
 			Program.status = status;
-			Console.SetCursorPosition(8, 5);
-			Console.Write((Program.status == Status.IDLE) ? "Idle" : (Program.status == Status.SEARCHING ? "Searching for links" : (Program.status == Status.SCRAPING ? "Scraping links for proxies" : (Program.status == Status.SAVING ? "Saving proxies to computer" : (Program.status == Status.PINGING ? "Pinging proxies" : "Done")))));
+			Console.SetCursorPosition(0, 5);
+			Console.Write(new string(' ', Console.WindowWidth)); 
+			Console.SetCursorPosition(0, 5);
+			Console.Write("Status: " + ((Program.status == Status.IDLE) ? "Idle" : (Program.status == Status.SEARCHING ? "Searching for links" : (Program.status == Status.SCRAPING ? "Scraping links for proxies" : (Program.status == Status.SAVING ? "Saving proxies to computer" : (Program.status == Status.PINGING ? "Pinging proxies" : "Done"))))));
 			
 		}
 		

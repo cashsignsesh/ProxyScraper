@@ -1,6 +1,6 @@
 https://www.google.com/search?q=proxy+list
-http://spys.one/en/
 http://free-proxy.cz/en/
+http://spys.one/en/
 http://www.freeproxylists.net/
 http://proxydb.net/
 https://www.google.com/search?q=proxy+list&start=10
@@ -12,13 +12,108 @@ https://www.google.com/search?q=proxy+list&start=50
 https://www.google.com/search?q=proxy+list&start=60
 https://www.google.com/search?q=proxy+list&start=70
 https://www.google.com/search?q=proxy+list&start=80
-http://spys.one/en/
 http://free-proxy.cz/en/
 System.Net.WebException: The remote server returned an error: (401) Unauthorized.
    at System.Net.HttpWebRequest.GetResponse()
-   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 79
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 93
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+http://spys.one/en/
+http://www.freeproxylists.net/
+http://proxydb.net/
+138.68.240.218:8080
+138.197.157.32:8080
+188.166.83.17:8080
+188.226.141.211:3128
+188.226.141.61:8080
+176.9.75.42:3128
+46.4.96.137:3128
+101.4.136.34:81
+138.197.157.32:3128
+138.68.240.218:3128
+188.166.83.17:3128
+188.226.141.61:3128
+46.4.96.137:8080
+207.154.231.213:8080
+162.243.108.129:3128
+https://www.google.com/search?q=proxy+list
+http://free-proxy.cz/en/
+http://spys.one/en/
+http://www.freeproxylists.net/
+http://proxydb.net/
+https://www.google.com/search?q=proxy+list&start=10
+https://www.google.com/search?q=proxy+list&start=20
+http://prepaenlinea.sep.gob.mx/efqvw/german-proxy-list.html
+https://www.google.com/search?q=proxy+list&start=30
+https://www.google.com/search?q=proxy+list&start=40
+https://www.google.com/search?q=proxy+list&start=50
+https://www.google.com/search?q=proxy+list&start=60
+https://www.google.com/search?q=proxy+list&start=70
+https://www.google.com/search?q=proxy+list&start=80
+https://github.com/clarketm/proxy-list/blob/master/proxy-list-raw.txt
+System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+https://github.com/a2u/free-proxy-list/blob/master/free-proxy-list.txt
+System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+https://github.com/hookzof/socks5_list/blob/master/proxy.txt
+System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+http://free-proxy.cz/en/
+System.Net.WebException: The remote server returned an error: (401) Unauthorized.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+http://spys.one/en/
+https://www.google.com/search?q=proxy+list
+http://free-proxy.cz/en/
+http://spys.one/en/
+http://www.freeproxylists.net/
+http://proxydb.net/
+https://www.google.com/search?q=proxy+list&start=10
+https://www.google.com/search?q=proxy+list&start=20
+http://prepaenlinea.sep.gob.mx/efqvw/german-proxy-list.html
+https://www.google.com/search?q=proxy+list&start=30
+https://www.google.com/search?q=proxy+list&start=40
+https://www.google.com/search?q=proxy+list&start=50
+https://www.google.com/search?q=proxy+list&start=60
+https://www.google.com/search?q=proxy+list&start=70
+https://www.google.com/search?q=proxy+list&start=80
+https://github.com/clarketm/proxy-list/blob/master/proxy-list-raw.txt
+System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+https://github.com/a2u/free-proxy-list/blob/master/free-proxy-list.txt
+System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+https://github.com/hookzof/socks5_list/blob/master/proxy.txt
+System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+http://free-proxy.cz/en/
+System.Net.WebException: The remote server returned an error: (401) Unauthorized.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+http://spys.one/en/
 http://www.freeproxylists.net/
 http://proxydb.net/
 138.68.240.218:8080
@@ -39,58 +134,78 @@ http://proxydb.net/
 http://prepaenlinea.sep.gob.mx/efqvw/german-proxy-list.html
 System.Net.WebException: The request was aborted: The connection was closed unexpectedly.
    at System.Net.HttpWebRequest.GetResponse()
-   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 79
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 93
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
 https://www.google.com/search?q=proxy+list&start=100
 https://www.google.com/search?q=proxy+list&start=110
 https://www.google.com/search?q=proxy+list&start=120
 https://www.google.com/search?q=proxy+list&start=130
-http://support.sas.com/kb/57793.html
 https://www.google.com/search?q=proxy+list&start=140
-http://tenf.itcgiuliocesare.it/free-socks-list-daily.html
+http://support.sas.com/kb/57793.html
 http://ei.animandoclub.it/iran-ip-proxy.html
 http://ef.associazioneadlib.it/german-proxy-list.html
 https://www.google.com/search?q=proxy+list&start=150
 http://wiki.cas.mcmaster.ca/index.php/Proxy_Server
-http://ai.newvolleylucera.it/thailand-proxy-list-socks4.html
+http://ei.parafarmacia-foce.it/proxy-tools.html
 http://da.tsisistemi.it/web-proxy.html
-http://dm.skymeditalia.it/best-socks5-proxy-list.html
 https://www.google.com/search?q=proxy+list&start=160
 http://ca.smavbuy.it/cool-proxy-ip-japan.html
 http://bp.madbrothers.it/mega-download-proxy.html
-http://ci.invacanzaa.it/proxy-portal-a-list-of-top.html
-http://bn.bridgeaspromonte.it/instagram-proxy.html
+http://ds.filmoza.pl/premium-proxy-list.html
+http://cqlh.itcgiuliocesare.it/hidemyass-freeproxy.html
+http://placexdg.mulla.xyz/web-proxy-list-yahoo.html
+http://am.prohotel.pl/free-proxy-list-apk.html
 https://www.google.com/search?q=proxy+list&start=170
-http://www.proxyserverlist24.top/
-http://www.idcloak.com/proxylist/free-http-proxy-list.html
 http://aliveproxy.com/products/alive-proxy/proxy-list/
-http://cm.profumoviola.it/hosting-proxy-server.html
 http://www.proxz.com/proxy_list_anonymous_us_7_ext.html
 http://www.anonymousproxylist.net/what-is-a-proxy-server/
 https://www.google.com/search?q=proxy+list&start=180
+http://cl.openstageit.co/best-socks5-proxy-list.html
+http://bm.forjandofuturos.co/residential-proxy.html
 http://www.chillingeffects.org/notice.cgi%3FsID%3D1258992
-http://support.sas.com/kb/57793.html
-http://tenf.itcgiuliocesare.it/free-socks-list-daily.html
-System.Net.WebException: The remote server returned an error: (404) Not Found.
+https://github.com/clarketm/proxy-list/blob/master/proxy-list-raw.txt
+System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
    at System.Net.HttpWebRequest.GetResponse()
-   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 79
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
 System.NullReferenceException: Object reference not set to an instance of an object.
-   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 93
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+https://github.com/a2u/free-proxy-list/blob/master/free-proxy-list.txt
+System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+https://github.com/hookzof/socks5_list/blob/master/proxy.txt
+System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+http://support.sas.com/kb/57793.html
 http://ei.animandoclub.it/iran-ip-proxy.html
 http://ef.associazioneadlib.it/german-proxy-list.html
 http://wiki.cas.mcmaster.ca/index.php/Proxy_Server
-http://ai.newvolleylucera.it/thailand-proxy-list-socks4.html
+http://ei.parafarmacia-foce.it/proxy-tools.html
 http://da.tsisistemi.it/web-proxy.html
-http://dm.skymeditalia.it/best-socks5-proxy-list.html
 http://ca.smavbuy.it/cool-proxy-ip-japan.html
 http://bp.madbrothers.it/mega-download-proxy.html
-http://ci.invacanzaa.it/proxy-portal-a-list-of-top.html
-http://bn.bridgeaspromonte.it/instagram-proxy.html
-http://www.proxyserverlist24.top/
-http://www.idcloak.com/proxylist/free-http-proxy-list.html
+http://ds.filmoza.pl/premium-proxy-list.html
+http://cqlh.itcgiuliocesare.it/hidemyass-freeproxy.html
+System.Net.WebException: The remote server returned an error: (404) Not Found.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 83
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ProxyScraper.Scraper._scrape(String site) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\Scraper.cs:line 97
+http://placexdg.mulla.xyz/web-proxy-list-yahoo.html
+http://am.prohotel.pl/free-proxy-list-apk.html
 http://aliveproxy.com/products/alive-proxy/proxy-list/
-5.189.133.231:80
+364950:481250
+481250:364950
+116300:364950
+364950:116300
+5.189.133.231:116300
+116300:07
 85.26.146.169:80
 159.138.20.247:80
 77.73.241.154:80
@@ -99,95 +214,4 @@ http://aliveproxy.com/products/alive-proxy/proxy-list/
 51.158.98.121:8811
 101.4.136.34:80
 51.158.108.135:8811
-http://cm.profumoviola.it/hosting-proxy-server.html
 http://www.proxz.com/proxy_list_anonymous_us_7_ext.html
-85.196.183.162:8080
-85.187.17.39:53281
-91.226.212.131:1182
-66.90.255.99:8080
-50.197.38.230:60724
-45.76.43.163:8080
-92.207.253.226:4145
-109.169.65.225:1080
-109.169.65.145:1080
-67.71.223.61:4145
-139.99.104.233:36012
-139.99.105.186:80
-114.104.189.119:1080
-113.229.81.108:1080
-112.6.132.95:51080
-61.115.1.182:80
-150.95.131.174:3128
-117.55.209.126:8081
-62.210.124.248:3128
-51.68.141.240:3128
-51.38.71.101:8080
-94.231.80.100:3128
-91.67.240.32:3128
-85.196.183.162:8080
-1.215.162.195:4145
-114.4.192.17:4145
-118.67.216.94:4145
-1.215.162.195:4145
-114.4.192.17:4145
-118.67.216.94:4145
-http://www.anonymousproxylist.net/what-is-a-proxy-server/
-http://www.chillingeffects.org/notice.cgi%3FsID%3D1258992
-https://www.google.com/search?q=proxy+list&start=200
-https://www.google.com/search?q=proxy+list&start=210
-https://www.google.com/search?q=proxy+list&start=220
-https://www.google.com/search?q=proxy+list&start=230
-https://www.google.com/search?q=proxy+list&start=240
-https://www.google.com/search?q=proxy+list&start=250
-https://www.google.com/search?q=proxy+list&start=260
-https://www.google.com/search?q=proxy+list&start=270
-https://www.google.com/search?q=proxy+list&start=280
-https://www.google.com/search?q=proxy+list&start=300
-https://www.google.com/search?q=proxy+list&start=310
-https://www.google.com/search?q=proxy+list&start=320
-https://www.google.com/search?q=proxy+list&start=330
-https://www.google.com/search?q=proxy+list&start=340
-https://www.google.com/search?q=proxy+list&start=350
-https://www.google.com/search?q=proxy+list&start=360
-https://www.google.com/search?q=proxy+list&start=370
-https://www.google.com/search?q=proxy+list&start=380
-https://www.google.com/search?q=proxy+list&start=400
-https://www.google.com/search?q=proxy+list&start=410
-https://www.google.com/search?q=proxy+list&start=420
-https://www.google.com/search?q=proxy+list&start=430
-https://www.google.com/search?q=proxy+list&start=440
-https://www.google.com/search?q=proxy+list&start=450
-https://www.google.com/search?q=proxy+list&start=460
-https://www.google.com/search?q=proxy+list&start=470
-https://www.google.com/search?q=proxy+list&start=480
-https://www.google.com/search?q=proxies
-https://www.google.com/search?q=proxies&start=10
-https://www.google.com/search?q=proxies&start=20
-http://www.qnx.com/developers/docs/qnxcar2/topic/com.qnx.doc.neutrino.getting_started/topic/s3_qnx2nto_pp-proxy.html
-https://www.google.com/search?q=proxies&start=30
-http://investors.geemedia.com/financial-information/annual-reports
-https://www.google.com/search?q=proxies&start=40
-https://www.google.com/search?q=proxies&start=50
-https://www.google.com/search?q=proxies&start=60
-http://www.isa.co/en/our-company/Pages/proxies-and-unauthorized-practices.aspx
-https://www.google.com/search?q=proxies&start=70
-https://www.google.com/search?q=proxies&start=80
-http://www.qnx.com/developers/docs/qnxcar2/topic/com.qnx.doc.neutrino.getting_started/topic/s3_qnx2nto_pp-proxy.html
-http://investors.geemedia.com/financial-information/annual-reports
-http://www.isa.co/en/our-company/Pages/proxies-and-unauthorized-practices.aspx
-https://www.google.com/search?q=proxies&start=100
-http://pastglobalchanges.org/science/wg/former/sea-ice-proxies
-https://www.google.com/search?q=proxies&start=110
-https://www.google.com/search?q=proxies&start=120
-http://ir.muellerwaterproducts.com/financial-information/annual-reports-and-proxies
-http://investors.nanostring.com/financial-information/annual-reports-and-proxies
-https://www.google.com/search?q=proxies&start=130
-http://www.tahiti-shark-expeditions.com/fwxi/paid-proxies.html
-http://www.limeproxies.com/
-https://www.google.com/search?q=proxies&start=140
-https://www.google.com/search?q=proxies&start=150
-http://condoadviser.ca/2019/08/managers-soliciting-proxies-dos-and-donts/condo-law-blog-Ontario
-https://www.google.com/search?q=proxies&start=160
-https://www.google.com/search?q=proxies&start=170
-https://www.google.com/search?q=proxies&start=180
-http://pastglobalchanges.org/science/wg/former/sea-ice-proxies

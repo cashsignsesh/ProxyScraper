@@ -21,15 +21,17 @@ namespace ProxyScraper {
 		
 		private List<String> proxies = null;
 		private Ping ping = null;
+		private List<String> proxiesDebug = null;
 		
 		public ProxyManager () {
 			
 			this.proxies = new List<String>();
 			this.ping = new Ping();
+			this.proxiesDebug = new List<String>();
 			
 		}
 		
-		public void inputProxy (string proxy) { proxies.Add(proxy); 
+		public void inputProxy (string proxy) { this.proxies.Add(proxy); 
 												Program.debug(proxy);
 												++Program.proxiesScraped;
 												Program.cm.updateProxies();
@@ -56,7 +58,20 @@ namespace ProxyScraper {
 				foreach (string s in this.proxies)
 					sw.WriteLine(s);
 				
-			}			
+			}
+			
+			#if DEBUG
+			
+			Program.cm.updateStatus(Status.SAVING);
+			this.removeDupes();
+			using (StreamWriter sw = new StreamWriter("./proxies/debug_scraped.txt", false)) {
+				
+				foreach (string s in this.proxiesDebug)
+					sw.WriteLine(s);
+				
+			}
+			
+			#endif
 			
 		}
 		
@@ -76,6 +91,8 @@ namespace ProxyScraper {
 			proxies = pinged;
 			
 		}
+		
+		public void inputDebugProxy (string proxy) { this.proxiesDebug.Add(proxy); }
 		
 		
 	}

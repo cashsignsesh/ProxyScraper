@@ -49,16 +49,20 @@ namespace ProxyScraper {
 			++this.searchIterations;
 			Program.cm.updateStatus(Status.SCRAPING);
 			
+			if (switchIterations == 0) {
+				foreach (string s in Program.settingsLinks) { Program.debug(s); this._scrape(s); } 
+			}
+				
 			foreach (string s in sites) { Program.debug(s); this._scrape(s); }
 			
-			if (this.searchIterations == 5) {
+			if (this.searchIterations == 2) {
 				
 				++switchIterations;
 				
 				this.searchIterations = 0;
 				if (switchIterations == 1) this.s = new Searcher("proxies");
 				if (switchIterations == 2) this.s = new Searcher("socks list");
-				if (switchIterations == 3) { Program.pm.pingProxies(); Program.pm.save(); Program.cm.updateStatus(Status.DONE); return; }
+				if (switchIterations == 3) { /*Program.pm.pingProxies();*/ Program.pm.save(); Program.cm.updateStatus(Status.DONE); return; }
 				// Probably shouldn't continue bc google will ban your ip, but the code would work if expanded on
 				// Some ideas for new search queries: 'github proxies', 'proxy txt'
 				
@@ -109,13 +113,67 @@ namespace ProxyScraper {
 			foreach (HtmlTextNode xt in n.Descendants().OfType<HtmlTextNode>())
 				txt.Add(Regex.Replace(xt.InnerHtml, @"\s+", ""));
 			
+			string se = null;
+			int pr = 0;
 			foreach (string tx in txt) {
 				
 				foreach (string txx in tx.Split(' ')) {
-				
+					
 					if (txx.Length < 6) continue;
 					
 					string[] bx = txx.Split(':');
+					
+					#region Javascript obfuscated
+					#endregion
+					
+					#region Reverse formatted proxy
+					
+					if (!(pr == 0)) {
+						
+						if (bx[0] == ":") continue;
+							
+						try { IPAddress.Parse(bx[0]); }
+						catch { continue; }
+						Program.pm.inputProxy(bx[0] + ":" + pr);
+						Program.pm.inputDebugProxy(bx[0] + ":" + pr + ":Reverse formatted");
+						pr = 0;
+							
+					}
+						
+					if (bx.Length == 1) {
+						
+						try { pr = Int32.Parse(bx[0]); }
+						catch { continue; }
+						
+					}
+					
+					#endregion
+					
+					#region Formatted proxy
+					
+					if (!(se == null)) {
+						
+						if (bx[0] == ":") continue;
+						
+						try { Int32.Parse(bx[0]); }
+						catch { continue; }
+						Program.pm.inputProxy(se + ":" + bx[0]);
+						Program.pm.inputDebugProxy(se + ":" + bx[0] + ":Formatted");
+						se = null;
+						
+					}
+					
+					if (bx.Length == 1) {
+						
+						try { IPAddress.Parse(bx[0]); }
+						catch { continue; }
+						se = bx[0];
+						
+					}
+					
+					#endregion
+					
+					#region Plain text proxy
 					
 					if (bx.Length == 2) {
 						
@@ -123,12 +181,37 @@ namespace ProxyScraper {
 						catch { continue; }
 						
 						Program.pm.inputProxy(bx[0] + ":" + bx[1]);
+						Program.pm.inputDebugProxy(bx[0] + ":" + bx[1] + ":Plain text");
 						
 					}
+					
+					#endregion
 					
 				}
 						
 			}
+			
+			#region Raw lines proxy
+			
+			string[] inhtmlSplit = {""};
+			try { inhtmlSplit = n.InnerHtml.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries); }
+			catch (Exception e) { /*blank link?*/ Program.debug(e.ToString()); return; }
+			foreach (string rls in inhtmlSplit) {
+				
+				string[] zz = rls.Split(':');
+				
+				if (zz.Length != 2) continue;
+				
+				try { IPAddress.Parse(zz[0]); if (!(Int32.Parse(zz[1]) > 79)) throw new Exception(); }
+				catch { continue; }
+				
+				Program.pm.inputProxy(zz[0] + ":" + zz[1]);
+				Program.pm.inputDebugProxy(zz[0] + ":" + zz[1] + ":Raw lines");
+				
+			}
+				
+			
+			#endregion
 					                                
 			
 		}
