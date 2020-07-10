@@ -8,27 +8,33 @@
  */
 using System;
 using System.IO;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace ProxyScraper {
 	
 	internal class Program {
 		
 		public static int proxiesScraped = 0;
+		public static string status = "Idle";
+		
+		private static ConsoleManager cm = null;
+		private static Scraper s = null;
+		private static List<String> proxies = null;
 		
 		public static void Main (string[] args) {
 			
 			init();
-			
-			Console.WriteLine("Proxy Scraper - " + DateTime.Now);
-			Console.WriteLine("Press any key to begin");
-			Console.WriteLine("Any data in ./proxies/scraped.txt will be overwritten.");
-			Console.ReadKey();
+			cm.printBase();
+			new Thread(s.scrape).Start();
 			
 		}
 		
 		private static void init () {
 			
-			Console.Title = "Proxy Scraper";
+			proxies = new List<String>();
+			cm = new ConsoleManager();
+			s = new Scraper();
 			
 			if (!(Directory.Exists("./proxies/"))) {
 				
