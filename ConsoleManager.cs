@@ -28,7 +28,6 @@ namespace ProxyScraper {
 			Console.CursorVisible = false;
 			
 			new Timer(state => updateTime(), null, 1000, 1000);
-			new Timer(state => updateStatus(), null, 21066, 100);
 			
 		}
 		
@@ -64,10 +63,11 @@ namespace ProxyScraper {
 			
 		}
 		
-		protected internal void updateStatus () {
+		protected internal void updateStatus (Status status) {
 			
+			Program.status = status;
 			Console.SetCursorPosition(8, 5);
-			Console.Write(Program.status);
+			Console.Write((Program.status == Status.IDLE) ? "Idle" : (Program.status == Status.SEARCHING ? "Searching for links" : (Program.status == Status.SCRAPING ? "Scraping links for proxies" : (Program.status == Status.SAVING ? "Saving proxies to computer" : "Pinging proxies"))));
 			
 		}
 		

@@ -16,11 +16,15 @@ namespace ProxyScraper {
 	internal class Program {
 		
 		public static int proxiesScraped = 0;
-		public static string status = "Idle";
+		public static Status status = Status.IDLE;
 		
-		private static ConsoleManager cm = null;
+		internal static ConsoleManager cm = null;
 		private static Scraper s = null;
 		private static List<String> proxies = null;
+		
+		//TODO:: proxy manager with ping check
+		//TODO:: optional search query settings?
+		//TODO:: release both ProxyScraper dev(Debug) and ProxyScraper release(Release) and HtmlAgilityPack.dll in release
 		
 		public static void Main (string[] args) {
 			
@@ -42,7 +46,20 @@ namespace ProxyScraper {
 				
 				if (!(File.Exists("./proxies/scraped.txt"))) File.Create("./proxies/scraped.txt");
 				
+				#if DEBUG
+				if (!(File.Exists("./debug.txt"))) File.Create("./debug.txt");
+				#endif
+				
 			}
+			
+		}
+		
+		public static void debug (string info) {
+			
+			#if DEBUG
+			using (StreamWriter sw = File.AppendText("debug.txt"))
+				sw.WriteLine(info);
+			#endif
 			
 		}
 		

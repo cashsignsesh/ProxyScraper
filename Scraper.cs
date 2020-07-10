@@ -15,7 +15,7 @@ namespace ProxyScraper {
 	
 	/// <summary>
 	/// Proxy scraper
-	/// If needs to be reused then reinitialize
+	/// If needs to be reused then reinitialize, and Searcher.scrapedLinksArchive reset
 	/// </summary>
 	public class Scraper {
 		
@@ -31,7 +31,7 @@ namespace ProxyScraper {
 		
 		private List<String> search (int start, int end) {
 			
-			Program.status = "Searching for links";
+			Program.cm.updateStatus(Status.SEARCHING);
 			
 			return s.search(start, end);
 			
@@ -43,10 +43,10 @@ namespace ProxyScraper {
 			List<String> sites = this.search(iter + 1, iter + 10);
 			++this.searchIterations;
 			
-			Program.status = "Scraping";
+			Program.cm.updateStatus(Status.SCRAPING);
 			
 			//foreach (string s in sites) this._scrape(s);
-			foreach (string s in sites) Console.WriteLine(s);
+			foreach (string s in sites) ;//Console.WriteLine(s);
 			
 			if (this.searchIterations == 5) {
 				
@@ -56,7 +56,7 @@ namespace ProxyScraper {
 				if (switchIterations == 1) this.s = new Searcher("proxies");
 				if (switchIterations == 2) this.s = new Searcher("socks list");
 				if (switchIterations == 3) return;
-				// Probably shouldn't continue bc google will ban your ip
+				// Probably shouldn't continue bc google will ban your ip, but the code would work if expanded on
 				
 			}
 			
