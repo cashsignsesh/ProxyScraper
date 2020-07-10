@@ -1,0 +1,5 @@
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\obj\Debug\ProxyScraper.csprojResolveAssemblyReference.cache
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\bin\Debug\ProxyScraper.exe
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\bin\Debug\ProxyScraper.pdb
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\obj\Debug\ProxyScraper.exe
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraper\obj\Debug\ProxyScraper.pdb
