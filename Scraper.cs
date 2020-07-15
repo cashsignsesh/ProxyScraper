@@ -27,10 +27,12 @@ namespace ProxyScraper {
 		private Searcher s;
 		private int searchIterations = 0;
 		private int switchIterations = 0;
+		public static readonly Regex ipRegex = new Regex(@"\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b");
 		
 		public Scraper () {
 				
 			this.s = new Searcher("proxy list");
+			ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
 			
 		}
 		
@@ -48,22 +50,19 @@ namespace ProxyScraper {
 			List<String> sites = this.search(iter + 1, iter + 10);
 			++this.searchIterations;
 			Program.cm.updateStatus(Status.SCRAPING);
-			
-			if (switchIterations == 0) {
-				foreach (string s in Program.settingsLinks) { Program.debug(s); this._scrape(s); } 
-			}
 				
 			foreach (string s in sites) { Program.debug(s); this._scrape(s); }
 			
 			if (this.searchIterations == 2) {
 				
-				++switchIterations;
+				++this.switchIterations;
 				
 				this.searchIterations = 0;
-				if (switchIterations == 1) this.s = new Searcher("proxies");
-				if (switchIterations == 2) this.s = new Searcher("socks list");
-				if (switchIterations == 3) { /*Program.pm.pingProxies();*/ Program.pm.save(); Program.cm.updateStatus(Status.DONE); return; }
-				// Probably shouldn't continue bc google will ban your ip, but the code would work if expanded on
+				
+				if (this.switchIterations == Program.settingsQueries.Count+1) { /*Program.pm.pingProxies();*/ Program.pm.save(); Program.cm.updateStatus(Status.DONE); return; }
+				this.s = new Searcher(Program.settingsQueries[switchIterations-1]);
+				
+				// Probably shouldn't continue too much bc google will ban your ip, but the code would work if expanded on
 				// Some ideas for new search queries: 'github proxies', 'proxy txt'
 				
 			}
@@ -80,6 +79,7 @@ namespace ProxyScraper {
 					
 				HttpWebRequest rq = (HttpWebRequest)(WebRequest.Create(site));
 				rq.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36";
+				rq.ServicePoint.Expect100Continue = true;
 				HttpWebResponse rp = (HttpWebResponse)rq.GetResponse();
 				s = rp.GetResponseStream();
 					
@@ -130,7 +130,7 @@ namespace ProxyScraper {
 					
 					if (!(pr == 0)) {
 						
-						if (bx[0] == ":") continue;
+						if (txx == ":") continue;
 							
 						try { IPAddress.Parse(bx[0]); }
 						catch { continue; }
@@ -153,7 +153,7 @@ namespace ProxyScraper {
 					
 					if (!(se == null)) {
 						
-						if (bx[0] == ":") continue;
+						if (txx == ":") continue;
 						
 						try { Int32.Parse(bx[0]); }
 						catch { continue; }
@@ -175,14 +175,73 @@ namespace ProxyScraper {
 					
 					#region Plain text proxy
 					
-					if (bx.Length == 2) {
+					if (bx.Length > 0) {
+				
+						MatchCollection mc = ipRegex.Matches(txx);
+						char[] chars = txx.ToCharArray();
 						
-						try { IPAddress.Parse(bx[0]); if (!(Int32.Parse(bx[1]) > 79)) throw new Exception(); }
-						catch { continue; }
+						if (mc.Count == 0) continue;
 						
-						Program.pm.inputProxy(bx[0] + ":" + bx[1]);
-						Program.pm.inputDebugProxy(bx[0] + ":" + bx[1] + ":Plain text");
+						bool ismatch = false;
+						int cont = 0;
+						bool curCheck = false;
+						int iters = 0;
 						
+						foreach (Match m in mc) {
+								
+							ismatch = false;
+							string matchString = m.ToString();
+							int mLength = matchString.ToCharArray().Length;
+							StringBuilder port = new StringBuilder();
+							
+							curCheck = false;
+							iters = 0;
+						
+							foreach (char txxChar in chars) {
+								
+								++iters;
+								
+								if (cont > mLength - 1) {
+									
+									curCheck = true;
+									
+									if (cont == mLength && txxChar == ':') { ++cont; continue; }
+									else if (cont == mLength) break;
+									
+									try {  port.Append(Int32.Parse(txxChar.ToString()));  }
+									catch { 
+										
+										if (String.IsNullOrEmpty(port.ToString())) break;
+										else ismatch = true; break;
+										
+									}
+									
+									if (!(String.IsNullOrEmpty(port.ToString()) && iters == chars.Length))
+										ismatch = true;
+									
+									++cont;
+									
+								}
+								
+								if (curCheck) continue;
+								
+								if (txxChar == matchString[cont]) ++cont;
+								else cont = 0;
+								
+							}
+							
+							if (!(ismatch)) continue;
+							cont = 0;
+							
+							try { IPAddress.Parse(matchString); if (!(Int32.Parse(port.ToString()) > 79)) throw new Exception(); }
+							catch { continue; }
+										
+							Program.pm.inputProxy(matchString + ":" + port as string);
+							Program.pm.inputDebugProxy(matchString + ":" + port as string + ":Plain text");
+				
+						
+						}
+					
 					}
 					
 					#endregion

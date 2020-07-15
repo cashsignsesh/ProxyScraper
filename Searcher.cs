@@ -114,6 +114,7 @@ namespace ProxyScraper {
 				
 			}
 			
+			Thread.Sleep(4300); //Sleep a bit to avoid getting banned, doesn't mess up gui since this is in a new thread presumably
 			return results;
 			
 		}

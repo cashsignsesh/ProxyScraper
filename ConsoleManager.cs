@@ -23,7 +23,6 @@ namespace ProxyScraper {
 		private readonly string title = null;
 		private int secondsElapsed = 0;
 		
-		public readonly byte[] linksDefault;
 		public readonly byte[] queriesDefault;
 		
 		public ConsoleManager () {
@@ -34,11 +33,11 @@ namespace ProxyScraper {
 			#if !DEBUG
 			Console.CursorVisible = false;
 			#endif
-			linksDefault = Encoding.ASCII.GetBytes(@"https://github.com/clarketm/proxy-list/blob/master/proxy-list-raw.txt
-https://github.com/a2u/free-proxy-list/blob/master/free-proxy-list.txt
-https://github.com/hookzof/socks5_list/blob/master/proxy.txt");
 			queriesDefault = Encoding.ASCII.GetBytes(@"proxies
-socks list");
+socks list
+inurl:proxies.txt
+inurl:socks4.txt
+inurl:socks5.txt");
 				
 			new Timer(state => updateTime(), null, 1000, 1000);
 			
@@ -54,7 +53,7 @@ socks list");
 			
 			Console.SetCursorPosition(0, 4);
 			Console.Write("Proxies: " + Program.proxiesScraped);
-			Console.Write("\nStatus: " + Program.status);
+			Console.Write("\nStatus: " + Program.status); //TODO:: minor issue here, will be displayed in all caps
 			
 		}
 		

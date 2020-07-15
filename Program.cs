@@ -23,13 +23,13 @@ namespace ProxyScraper {
 		private static Scraper s = null;
 		internal static ProxyManager pm = null;
 		
-		public static List<string> settingsLinks;
 		public static List<string> settingsQueries;
 		
-		//TODO:: settings files (links & search queries)
 		//TODO:: release both ProxyScraper dev(Debug) and ProxyScraper release(Release) and HtmlAgilityPack.dll in release
 		//TODO:: fix timer for update time (see TODO:: @ ConsoleManager.cs)
-		//TODO:: (maybe) search links already stored for more proxy-related links (href=contains("proxy"))??
+		//TODO:: (maybe) search links already stored for more proxy-related links (href=contains("proxy"))?? if(node.tolower.contains("next page")) this._scrape(node.href)????
+		//TODO:: fix pinger, try different timeouts and multi thread
+		//TODO:: get better at scraping proxies from websites
 		
 		public static void Main (string[] args) {
 			
@@ -59,12 +59,10 @@ namespace ProxyScraper {
 				if (!(File.Exists("./proxies/debug_scraped.txt"))) File.Create("./proxies/debug_scraped.txt").Close();
 				#endif
 				
-				File.WriteAllText("./links.txt", Encoding.ASCII.GetString(cm.linksDefault));
 				File.WriteAllText("./queries.txt", Encoding.ASCII.GetString(cm.queriesDefault));
 				
 			}
 			
-			settingsLinks = new List<String>(File.ReadAllLines("./links.txt"));
 			settingsQueries = new List<String>(File.ReadAllLines("./queries.txt"));
 			
 		}

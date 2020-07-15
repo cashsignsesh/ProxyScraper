@@ -1,2 +1,5 @@
 proxies
 socks list
+inurl:proxies.txt
+inurl:socks4.txt
+inurl:socks5.txt
