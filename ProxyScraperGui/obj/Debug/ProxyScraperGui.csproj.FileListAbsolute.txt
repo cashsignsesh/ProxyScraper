@@ -1,0 +1,8 @@
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\obj\Debug\ProxyScraperGui.csprojResolveAssemblyReference.cache
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\obj\Debug\ProxyScraperGui.MainForm.resources
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\obj\Debug\ProxyScraperGui.csproj.GenerateResource.Cache
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\bin\Debug\ProxyScraperGui.exe
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\bin\Debug\ProxyScraperGui.pdb
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\obj\Debug\ProxyScraperGui.exe
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\obj\Debug\ProxyScraperGui.pdb
+C:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\bin\Debug\HtmlAgilityPack.dll

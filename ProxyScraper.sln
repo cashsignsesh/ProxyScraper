@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 4.4
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyScraper", "ProxyScraper\ProxyScraper.csproj", "{2F3F3EA1-2F85-4165-A432-7F79443465D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyScraperGui", "ProxyScraperGui\ProxyScraperGui.csproj", "{4E4BFE37-B177-40E4-8F69-BC6F5E41EB72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F3F3EA1-2F85-4165-A432-7F79443465D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F3F3EA1-2F85-4165-A432-7F79443465D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F3F3EA1-2F85-4165-A432-7F79443465D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F3F3EA1-2F85-4165-A432-7F79443465D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E4BFE37-B177-40E4-8F69-BC6F5E41EB72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E4BFE37-B177-40E4-8F69-BC6F5E41EB72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E4BFE37-B177-40E4-8F69-BC6F5E41EB72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E4BFE37-B177-40E4-8F69-BC6F5E41EB72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+EndGlobal
