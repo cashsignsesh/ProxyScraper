@@ -24,7 +24,7 @@ namespace ProxyScraper {
 	/// </summary>
 	public class Scraper {
 		
-		public Searcher s;
+		private Searcher s;
 		private int searchIterations = 0;
 		private int switchIterations = 0;
 		public static readonly Regex ipRegex = new Regex(@"\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b");
@@ -47,19 +47,20 @@ namespace ProxyScraper {
 		public void scrape () {
 			
 			int iter = this.searchIterations * 10;
-			List<String> sites = this.search(iter + 1, iter + 10);
+			bool isDefaultSearchQuery = this.s.getSearchQuery() == "proxy list";
+			List<String> sites = this.search((isDefaultSearchQuery) ? 1 : iter + 1, (isDefaultSearchQuery) ? Program.initialSearches : iter + 10);
 			++this.searchIterations;
 			Program.cm.updateStatus(Status.SCRAPING);
 				
-			foreach (string s in sites) { Program.debug(s); this._scrape(s); }
+			foreach (string s in sites) { Program.debug(s); if (!(Program.blacklist.Contains(s))) this._scrape(s); }
 			
-			if (this.searchIterations == 2) {
+			if (this.searchIterations == 2 || isDefaultSearchQuery) {
 				
 				++this.switchIterations;
 				
 				this.searchIterations = 0;
 				
-				if (this.switchIterations == Program.settingsQueries.Count+1) { /*Program.pm.pingProxies();*/ Program.pm.save(); Program.cm.updateStatus(Status.DONE); return; }
+				if (this.switchIterations == Program.settingsQueries.Count+1) { /*Program.pm.pingProxies();*/ Program.pm.save(); Program.cm.updateStatus(Status.DONE);  return; }
 				this.s = new Searcher(Program.settingsQueries[switchIterations-1]);
 				
 				// Probably shouldn't continue too much bc google will ban your ip, but the code would work if expanded on
@@ -108,46 +109,17 @@ namespace ProxyScraper {
 			d.LoadHtml(b.ToString());
 			HtmlNode n = d.DocumentNode;
 			HtmlNodeCollection children = n.ChildNodes;
-			List<String> txt = new List<String>();
-			
-			foreach (HtmlNode xt in n.Descendants().Where(KYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYS => KYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYS.InnerText != null && KYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYS.InnerText != ""))
-				txt.Add(Regex.Replace(xt.InnerText, @"\s+", ""));
 			
 			string se = null;
-			int pr = 0;
-			foreach (string tx in txt) {
+			foreach (HtmlTextNode xt in n.Descendants().OfType<HtmlTextNode>()) {
+				
+				string tx = Regex.Replace(xt.InnerHtml, @"\s+", "");
 				
 				foreach (string txx in tx.Split(' ')) {
 					
 					if (txx.Length < 6) continue;
 					
 					string[] bx = txx.Split(':');
-					
-					#region Javascript obfuscated
-					#endregion
-					
-					#region Reverse formatted proxy
-					
-					if (!(pr == 0)) {
-						
-						if (txx == ":") continue;
-							
-						try { IPAddress.Parse(bx[0]); }
-						catch { continue; }
-						Program.pm.inputProxy(bx[0] + ":" + pr);
-						Program.pm.inputDebugProxy(bx[0] + ":" + pr + ":Reverse formatted");
-						pr = 0;
-							
-					}
-						
-					if (bx.Length == 1) {
-						
-						try { pr = Int32.Parse(bx[0]); }
-						catch { continue; }
-						
-					}
-					
-					#endregion
 					
 					#region Formatted proxy
 					
@@ -205,7 +177,7 @@ namespace ProxyScraper {
 									
 									curCheck = true;
 									
-									if (cont == mLength && txxChar == ':') { ++cont; continue; }
+									if (cont == mLength && (txxChar == ':' || txxChar == ' ')) { ++cont; continue; }
 									else if (cont == mLength) break;
 									
 									try {  port.Append(Int32.Parse(txxChar.ToString()));  }

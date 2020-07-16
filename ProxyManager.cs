@@ -44,7 +44,7 @@ namespace ProxyScraper {
 			List<String> noDupes = new List<String>();
 			
 			foreach (string s in this.proxies)
-				if (!(noDupes.Contains(s)))
+				if (!(noDupes.Contains(s)) && !(Program.blacklist.Contains(s)))
 					noDupes.Add(s);
 			
 			this.proxies = noDupes;
@@ -55,6 +55,7 @@ namespace ProxyScraper {
 			
 			Program.cm.updateStatus(Status.SAVING);
 			this.removeDupes();
+			//this.pingProxies();
 			using (StreamWriter sw = new StreamWriter("./proxies/scraped.txt", false)) {
 				
 				foreach (string s in this.proxies)
@@ -73,7 +74,12 @@ namespace ProxyScraper {
 				
 			}
 			
+			Program.debug("--- Finished ProxyScraper: " + DateTime.Now + " ---");
+			
 			#endif
+			
+			Program.cm.disposeTimers();
+			Program.cm.fixConsole();
 			
 		}
 		

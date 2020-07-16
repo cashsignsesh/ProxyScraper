@@ -11,7 +11,6 @@ using System.IO;
 using System.Collections.Generic;
 using System.Threading;
 using System.Text;
-using HtmlAgilityPack;
 
 namespace ProxyScraper {
 	
@@ -24,30 +23,27 @@ namespace ProxyScraper {
 		private static Scraper s = null;
 		internal static ProxyManager pm = null;
 		
-		public static List<string> settingsQueries;
+		public static List<string> settingsQueries = null;
+		public static List<string> blacklist = null;
+		
+		public static int initialSearches = 3;
 		
 		//IMPORTANT TODO::
-		//TODO PRIORITY #1: OPTIMIZE GOOGLE SEARCH RESULTS SCRAPER, IT FUCKING SUCKS AND HARDLY SCRAPES ANY RESULTS!!!!!!!
-		//TODO PRIORITY #2: fix searching for next page href links, its useless
-		//TODO PRIORITY #3: fix pinger, try different timeouts and multi thread
+		//TODO PRIORITY #1: fix pinger, try different timeouts and multi thread
 		
+		//TODO:: fix formatted scraping (Try to go line by line of raw htm and detect ip then port on the next line, it will probably help) & fix that some connections don't work to websites(exceptions)
+		//TODO:: add proxy checking after pinging, or replace entirely?
+		//TODO:: make forms gui??? maybe implement ConsoleManager.cs into a richtextbox
+		//TODO:: optimization tweaks, i.e no double checking dupes for no reason.
 		
-		//TODO:: release both ProxyScraper dev(Debug) and ProxyScraper release(Release) and HtmlAgilityPack.dll in release
-		//TODO:: fix timer for update time (see TODO:: @ ConsoleManager.cs)
-		//TODO:: get better at scraping proxies from websites
 		//TODO:: comment out or #if DEBUG out getProxies() @ ProxyManager.cs at release
-		//TODO:: reverse order of queries @./queries.txt because the inurl: links yield many more results
+		//TODO:: release both ProxyScraper dev(Debug) and ProxyScraper release(Release) and HtmlAgilityPack.dll in release
 		
 		public static void Main (string[] args) {
 			
-			//Remember to set s.s to private
-			Scraper s = new Scraper();
+			if (args.Length == 1) initialSearches = Int32.Parse(args[0]);
 			
-			foreach (string str in s.s.search(1,2))
-				Console.WriteLine(str);
-			
-			while(true){}
-			
+			debug("--- Started ProxyScraper: " + DateTime.Now + " ---");
 			init();
 			cm.printBase();
 			new Thread(s.scrape).Start();
@@ -68,6 +64,7 @@ namespace ProxyScraper {
 				if (!(File.Exists("./proxies/scraped.txt"))) File.Create("./proxies/scraped.txt").Close();
 				if (!(File.Exists("./links.txt"))) File.Create("./links.txt").Close();
 				if (!(File.Exists("./queries.txt"))) File.Create("./queries.txt").Close();
+				if (!(File.Exists("./blacklist.txt"))) File.Create("./blacklist.txt").Close();
 				
 				#if DEBUG
 				if (!(File.Exists("./debug.txt"))) File.Create("./debug.txt").Close();
@@ -79,6 +76,7 @@ namespace ProxyScraper {
 			}
 			
 			settingsQueries = new List<String>(File.ReadAllLines("./queries.txt"));
+			blacklist = new List<String>(File.ReadAllLines("./blacklist.txt"));
 			
 		}
 		

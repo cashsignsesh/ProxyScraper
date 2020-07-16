@@ -14,6 +14,8 @@ using System.Net.Sockets;
 using System.IO;
 using HtmlAgilityPack;
 using System.Threading;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace ProxyScraper {
 	
@@ -24,7 +26,7 @@ namespace ProxyScraper {
 		
 		private string searchQuery = null;
 		public static List<string> scrapedLinksArchive = new List<string>();
-		private int iterCt = 0;
+		private readonly Regex rg = new Regex(@"""([^""]*)&");
 		
 		public Searcher (string searchQuery) {
 			
@@ -94,21 +96,16 @@ namespace ProxyScraper {
 				d.LoadHtml(b.ToString());
 				HtmlNode n = d.DocumentNode;
 				
-				foreach (HtmlNode htn in n.SelectNodes("//a[@href]")) {
+				foreach (HtmlNode htn in n.Descendants("a").Where(ppeater3000 => ppeater3000.GetAttributeValue("href", "").StartsWith("/url?q="))) {
 					
-					string v = htn.GetAttributeValue("href", "");
-					if (!(v.ToLower().Contains("google")) && v.Contains("/url?q=") && v.ToLower().Contains("http://")) {
-					    	
-	                    int x = v.IndexOf("&");
-	                    if (x == 0) continue;
-	                    string p = v.Substring(0, x).Replace("/url?q=", "");
-	                    
-	                    this.inputLink(p, results);
-	                    foreach (string p0 in this.searchForMorePages(p))
-	                    	this.inputLink(p0, results);
-	                    
-	                }
+					string p = this.rg.Match(htn.OuterHtml).ToString();
+					p = p.Substring(8).Split('&')[0];
+					if (p.Contains("accounts.google.com")) continue;
 					
+					this.inputLink(p, results);
+                    foreach (string p0 in this.searchForMorePages(p))
+                    	this.inputLink(p0, results);
+                    
 				}
 				
 			}
@@ -153,109 +150,76 @@ namespace ProxyScraper {
 			HtmlNode n = d.DocumentNode;
 			string hreflink = "";
 			
-			foreach (HtmlNode hnd in n.Descendants()) {
+			foreach (HtmlNode hnd in n.Descendants().Where(KYSKYSKYSKYSKYSKYSKYSKYSKYSKYKYSKYSKYS => KYSKYSKYSKYSKYSKYSKYSKYSKYSKYKYSKYSKYS.HasAttributes &&
+			                                               KYSKYSKYSKYSKYSKYSKYSKYSKYSKYKYSKYSKYS.Name.ToLower() == "a" &&
+			                                              (
+			                                               	KYSKYSKYSKYSKYSKYSKYSKYSKYSKYKYSKYSKYS.InnerText.ToLower().Contains("next") ||
+			                                               	KYSKYSKYSKYSKYSKYSKYSKYSKYSKYKYSKYSKYS.InnerText.Equals("3") ||
+			                                               	KYSKYSKYSKYSKYSKYSKYSKYSKYSKYKYSKYSKYS.InnerText.ToLower().Contains("proxies") ||
+			                                               	KYSKYSKYSKYSKYSKYSKYSKYSKYSKYKYSKYSKYS.InnerText.ToLower().Contains("list")
+			                                               )
+			                                              )) {
+				
+				//File.AppendAllText("./html.txt", Regex.Match(hnd.OuterHtml, ">(.*?)<").Value.Replace("<","").Replace(">","") + "\n");
 				
 				HtmlAttributeCollection atribs = hnd.Attributes;
 				
 				hreflink = "";
 				
-				string innerText = hnd.InnerText.ToString().ToLower();
-				
-				/*if ( !( ( innerText.Contains("next") || innerText.Contains("\u00BB") || innerText.Contains(((char)8594).ToString()) || innerText.Contains(">") ) )
-				    || ( (this.iterCt == 0) && ( !(innerText == "1") || !(innerText == "2") || !(innerText == "3") || !(innerText == "4") || !(innerText == "5") ))) continue;
-				CANT GET THIS TO WORK SO I GAVE UP TRYING TO FIX
-				
-				if ( !innerText.Contains("next") && !innerText.Contains("\u00BB") && !innerText.Contains(((char)8594).ToString()) && ! innerText.Contains(">") &&
-				    ((this.iterCt != 0) && !(innerText == "1") && !(innerText == "2") && !(innerText == "3") && !(innerText == "4") && !(innerText == "5"))) continue;*/
-				
-				
-				/*
-				if (!innerText.Contains("next"))
-					if (!innerText.Contains("\u00BB"))
-						if (!innerText.Contains(((char)8594).ToString()))
-							if (!innerText.Contains(">"))
-								if (this.iterCt == 0)
-									if (!(innerText == "1"))
-										if (!(innerText == "2"))
-												if (!(innerText == "3"))
-													if (!(innerText == "4"))
-														if (!(innerText == "5"))
-															continue;*/
-				
-				
-				
-				if (innerText.Contains("next")) goto GoodInnerText;
-				if (innerText.Contains("\u00BB")) goto GoodInnerText;
-				if (innerText.Contains(((char)8549).ToString())) goto GoodInnerText;
-				if (innerText.Contains(">")) goto GoodInnerText;
-				if (this.iterCt == 0) {
-					
-					if (innerText == "1") goto GoodInnerText;
-					if (innerText == "2") goto GoodInnerText;
-					if (innerText == "3") goto GoodInnerText;
-					if (innerText == "4") goto GoodInnerText;
-					if (innerText == "5") goto GoodInnerText;
-										
-				}
-				
-				continue;
-				GoodInnerText:
-				
 				foreach (HtmlAttribute ha in atribs) {
 					
-					if (ha.Name == "href" || ha.Name == "onclick") {
+					if (ha.Name != "href") continue;
+					
+					hreflink = ha.Value;
+					if (hreflink.StartsWith("#")) continue;
+					
+					Uri tmpUri = null;
 						
-						hreflink = ha.Value;
-						if (hreflink == "#") continue;
+					if (Uri.TryCreate(hreflink, UriKind.Absolute, out tmpUri) && (tmpUri.Scheme == Uri.UriSchemeHttp || tmpUri.Scheme == Uri.UriSchemeHttps)) {
 						
-						Uri tmpUri = null;
-						foreach (string hreflinksplitstring in hreflink.Split(' ')) {
-							
-							if (Uri.TryCreate(hreflinksplitstring, UriKind.Absolute, out tmpUri) && (tmpUri.Scheme == Uri.UriSchemeHttp || tmpUri.Scheme == Uri.UriSchemeHttps)) {
-								
-								newPages.Add(hreflinksplitstring);
-								goto DoneSplitChecks;
-								
-							}
-							else
-								if (Uri.TryCreate(hreflinksplitstring.Replace("\"", ""), UriKind.Absolute, out tmpUri) && (tmpUri.Scheme == Uri.UriSchemeHttp || tmpUri.Scheme == Uri.UriSchemeHttps)) {
-									
-									newPages.Add(hreflinksplitstring);
-									goto DoneSplitChecks;
-									
-								}
-							
-							
-						}
-						
-						if (hreflink.StartsWith("/")) {
-							
-							newPages.Add(new Uri(link).GetLeftPart(UriPartial.Authority) + hreflink);
-							continue;
-							
-						}
+						if (!(newPages.Contains(hreflink)) && !(hreflink == link))
+							newPages.Add(hreflink);
+						goto DoneSplitChecks;
 						
 					}
+					else {
+						if (Uri.TryCreate(hreflink.Replace("\"", ""), UriKind.Absolute, out tmpUri) && (tmpUri.Scheme == Uri.UriSchemeHttp || tmpUri.Scheme == Uri.UriSchemeHttps)) {
+							
+							if (!(newPages.Contains(hreflink)) && !(hreflink == link))
+								newPages.Add(hreflink);
+							goto DoneSplitChecks;
+							
+						}
+					}
+				
+					if (hreflink.StartsWith("/") || hreflink.StartsWith(@"\")) {
+						
+						string ppgg = new Uri(link).GetLeftPart(UriPartial.Authority) + hreflink;
+						
+						if (!(newPages.Contains(ppgg)) && !(ppgg == link))
+							newPages.Add(ppgg);
+						
+						continue;
+						
+					}
+					else /*Idk if this will generate junk, debug sample was small(1 website) and it worked fine..*/ {
+						
+						string ppgg = new Uri(link).GetLeftPart(UriPartial.Authority) + "/" + hreflink;
+						
+						if (Uri.TryCreate(ppgg, UriKind.Absolute, out tmpUri) && (tmpUri.Scheme == Uri.UriSchemeHttp || tmpUri.Scheme == Uri.UriSchemeHttps))
+							if (!(newPages.Contains(ppgg)) && !(ppgg == link))
+								newPages.Add(ppgg);
+						
+					}
+					
+					break;
 					
 				}
 				
 				DoneSplitChecks:;
 				
 			}
-				
-			++this.iterCt;
 			
-			if (!(this.iterCt == 0)) return newPages;
-			
-			if (!(this.iterCt == 4)) {
-				
-				foreach (string pg in newPages)
-					foreach (string pg0 in this.searchForMorePages(pg))
-						newPages.Add(pg0);
-				
-			}
-			this.iterCt = 0;
-			//File.WriteAllLines("html.txt", newPages);
 			return newPages;
 			
 		}
@@ -271,6 +235,8 @@ namespace ProxyScraper {
 	        }
 			
 		}
+		
+		public string getSearchQuery () { return this.searchQuery; }
 		
 	}
 }	

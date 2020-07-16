@@ -24,6 +24,8 @@ namespace ProxyScraper {
 		private int secondsElapsed = 0;
 		
 		public readonly byte[] queriesDefault;
+		public Timer tm;
+		public Timer tm0;
 		
 		public ConsoleManager () {
 			
@@ -33,31 +35,31 @@ namespace ProxyScraper {
 			#if !DEBUG
 			Console.CursorVisible = false;
 			#endif
-			queriesDefault = Encoding.ASCII.GetBytes(@"proxies
-socks list
-inurl:proxies.txt
+			queriesDefault = Encoding.ASCII.GetBytes(@"inurl:proxies.txt
 inurl:socks4.txt
-inurl:socks5.txt");
+inurl:socks5.txt
+proxies
+socks list");
 				
-			new Timer(state => updateTime(), null, 1000, 1000);
+			this.tm = new Timer(state => updateTime(), null, 1000, 1000);
+			this.tm0 = new Timer(state => fixConsole(), null, 30000, 30000);
 			
 		}
 		
 		public void printBase () {
 			
 			Console.WriteLine(title + " - " + DateTime.Now + " (Time Elapsed: " + secondsElapsed + "s)");
-			Console.WriteLine("Proxy scraping will commence at 20 seconds.");
+			Console.WriteLine("Proxy scraping will commence at 20 seconds. It will finish in ~" + (Program.settingsQueries.Count*9) + "min.");
 			Console.WriteLine("Any data in ./proxies/scraped.txt will be overwritten.");
 			
 			Thread.Sleep(20745);
 			
 			Console.SetCursorPosition(0, 4);
 			Console.Write("Proxies: " + Program.proxiesScraped);
-			Console.Write("\nStatus: " + Program.status); //TODO:: minor issue here, will be displayed in all caps
+			Console.Write("\nStatus: " + Program.status); //TODO:: minor issue here, will be displayed in all caps at first
 			
 		}
 		
-		//TODO:: fix, this freezes at 20-30s usually
 		protected internal void updateTime () {
 			
 			DateTime dt = DateTime.Now;
@@ -71,8 +73,10 @@ inurl:socks5.txt");
 		
 		protected internal void updateProxies () {
 			
-			Console.SetCursorPosition(9, 4);
-			Console.Write(Program.proxiesScraped);
+			Console.SetCursorPosition(0, 4);
+			Console.Write(new string(' ', Console.WindowWidth)); 
+			Console.SetCursorPosition(0, 4);
+			Console.Write("Proxies: " + Program.proxiesScraped);
 			
 		}
 		
@@ -83,6 +87,31 @@ inurl:socks5.txt");
 			Console.Write(new string(' ', Console.WindowWidth)); 
 			Console.SetCursorPosition(0, 5);
 			Console.Write("Status: " + ((Program.status == Status.IDLE) ? "Idle" : (Program.status == Status.SEARCHING ? "Searching for links" : (Program.status == Status.SCRAPING ? "Scraping links for proxies" : (Program.status == Status.SAVING ? "Saving proxies to computer" : (Program.status == Status.PINGING ? "Pinging proxies" : "Done"))))));
+			
+		}
+		
+		public void disposeTimers () {
+			
+			this.tm.Dispose();
+			this.tm0.Dispose();
+			
+		}
+		
+		protected internal void fixConsole () {
+			
+			DateTime dt = DateTime.Now;
+			Console.SetCursorPosition(0, 0);
+			Console.Write(new string(' ', Console.WindowWidth)); 
+			Console.SetCursorPosition(0, 0);
+			Console.Write(title + " - " + dt + " (Time Elapsed: " + secondsElapsed + "s)");
+			Console.SetCursorPosition(0, 1);
+			Console.Write(new string(' ', Console.WindowWidth)); 
+			Console.SetCursorPosition(0, 1);
+			Console.Write("Proxy scraping will commence at 20 seconds. It will finish in ~" + (Program.settingsQueries.Count*9) + "min.");
+			Console.SetCursorPosition(0, 2);
+			Console.Write(new string(' ', Console.WindowWidth)); 
+			Console.SetCursorPosition(0, 2);
+			Console.Write("Any data in ./proxies/scraped.txt will be overwritten.");
 			
 		}
 		
