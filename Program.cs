@@ -11,6 +11,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Threading;
 using System.Text;
+using HtmlAgilityPack;
 
 namespace ProxyScraper {
 	
@@ -25,13 +26,27 @@ namespace ProxyScraper {
 		
 		public static List<string> settingsQueries;
 		
+		//IMPORTANT TODO::
+		//TODO PRIORITY #1: OPTIMIZE GOOGLE SEARCH RESULTS SCRAPER, IT FUCKING SUCKS AND HARDLY SCRAPES ANY RESULTS!!!!!!!
+		//TODO PRIORITY #2: fix searching for next page href links, its useless
+		//TODO PRIORITY #3: fix pinger, try different timeouts and multi thread
+		
+		
 		//TODO:: release both ProxyScraper dev(Debug) and ProxyScraper release(Release) and HtmlAgilityPack.dll in release
 		//TODO:: fix timer for update time (see TODO:: @ ConsoleManager.cs)
-		//TODO:: (maybe) search links already stored for more proxy-related links (href=contains("proxy"))?? if(node.tolower.contains("next page")) this._scrape(node.href)????
-		//TODO:: fix pinger, try different timeouts and multi thread
 		//TODO:: get better at scraping proxies from websites
+		//TODO:: comment out or #if DEBUG out getProxies() @ ProxyManager.cs at release
+		//TODO:: reverse order of queries @./queries.txt because the inurl: links yield many more results
 		
 		public static void Main (string[] args) {
+			
+			//Remember to set s.s to private
+			Scraper s = new Scraper();
+			
+			foreach (string str in s.s.search(1,2))
+				Console.WriteLine(str);
+			
+			while(true){}
 			
 			init();
 			cm.printBase();

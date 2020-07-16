@@ -31,7 +31,9 @@ namespace ProxyScraper {
 			
 		}
 		
-		public void inputProxy (string proxy) { this.proxies.Add(proxy); 
+		public void inputProxy (string proxy) { if (Int32.Parse(proxy.Split(':')[1]) > 65535) return;
+												if (this.proxies.Contains(proxy)) return;
+												this.proxies.Add(proxy);
 												Program.debug(proxy);
 												++Program.proxiesScraped;
 												Program.cm.updateProxies();
@@ -94,6 +96,11 @@ namespace ProxyScraper {
 		
 		public void inputDebugProxy (string proxy) { this.proxiesDebug.Add(proxy); }
 		
+		/// <summary>
+		/// For debug
+		/// </summary>
+		/// <returns>The proxy list</returns>
+		public List<string> getProxies () { return this.proxies; }
 		
 	}
 	

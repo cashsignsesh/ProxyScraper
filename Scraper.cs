@@ -24,7 +24,7 @@ namespace ProxyScraper {
 	/// </summary>
 	public class Scraper {
 		
-		private Searcher s;
+		public Searcher s;
 		private int searchIterations = 0;
 		private int switchIterations = 0;
 		public static readonly Regex ipRegex = new Regex(@"\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b");
@@ -110,8 +110,8 @@ namespace ProxyScraper {
 			HtmlNodeCollection children = n.ChildNodes;
 			List<String> txt = new List<String>();
 			
-			foreach (HtmlTextNode xt in n.Descendants().OfType<HtmlTextNode>())
-				txt.Add(Regex.Replace(xt.InnerHtml, @"\s+", ""));
+			foreach (HtmlNode xt in n.Descendants().Where(KYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYS => KYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYS.InnerText != null && KYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYSKYS.InnerText != ""))
+				txt.Add(Regex.Replace(xt.InnerText, @"\s+", ""));
 			
 			string se = null;
 			int pr = 0;
@@ -235,7 +235,7 @@ namespace ProxyScraper {
 							
 							try { IPAddress.Parse(matchString); if (!(Int32.Parse(port.ToString()) > 79)) throw new Exception(); }
 							catch { continue; }
-										
+							
 							Program.pm.inputProxy(matchString + ":" + port as string);
 							Program.pm.inputDebugProxy(matchString + ":" + port as string + ":Plain text");
 				
