@@ -35,7 +35,7 @@ namespace ProxyScraper {
 			#if !DEBUG
 			Console.CursorVisible = false;
 			#endif
-			queriesDefault = Encoding.ASCII.GetBytes(@"inurl:proxies.txt
+			this.queriesDefault = Encoding.ASCII.GetBytes(@"inurl:proxies.txt
 inurl:socks4.txt
 inurl:socks5.txt
 proxies
@@ -49,7 +49,7 @@ socks list");
 		public void printBase () {
 			
 			Console.WriteLine(title + " - " + DateTime.Now + " (Time Elapsed: " + secondsElapsed + "s)");
-			Console.WriteLine("Proxy scraping will commence at 20 seconds. It will finish in ~" + (Program.settingsQueries.Count*9) + "min.");
+			Console.WriteLine("Proxy scraping will commence at 20 seconds. It will finish after 30-40~minutes.");
 			Console.WriteLine("Any data in ./proxies/scraped.txt will be overwritten.");
 			
 			Thread.Sleep(20745);
@@ -107,7 +107,7 @@ socks list");
 			Console.SetCursorPosition(0, 1);
 			Console.Write(new string(' ', Console.WindowWidth)); 
 			Console.SetCursorPosition(0, 1);
-			Console.Write("Proxy scraping will commence at 20 seconds. It will finish in ~" + (Program.settingsQueries.Count*9) + "min.");
+			Console.Write("Proxy scraping will commence at 20 seconds. It will finish after 30-40~minutes.");
 			Console.SetCursorPosition(0, 2);
 			Console.Write(new string(' ', Console.WindowWidth)); 
 			Console.SetCursorPosition(0, 2);

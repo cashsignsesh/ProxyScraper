@@ -27,21 +27,21 @@ namespace ProxyScraper {
 		public static List<string> blacklist = null;
 		
 		public static int initialSearches = 3;
+		public static int threads = 1000;
 		
 		//IMPORTANT TODO::
-		//TODO PRIORITY #1: fix pinger, try different timeouts and multi thread
 		
 		//TODO:: fix formatted scraping (Try to go line by line of raw htm and detect ip then port on the next line, it will probably help) & fix that some connections don't work to websites(exceptions)
 		//TODO:: add proxy checking after pinging, or replace entirely?
-		//TODO:: make forms gui??? maybe implement ConsoleManager.cs into a richtextbox
-		//TODO:: optimization tweaks, i.e no double checking dupes for no reason.
+		//TODO:: extend the extensive website searching so that it searches 1 more time for more links
 		
-		//TODO:: comment out or #if DEBUG out getProxies() @ ProxyManager.cs at release
-		//TODO:: release both ProxyScraper dev(Debug) and ProxyScraper release(Release) and HtmlAgilityPack.dll in release
+		//TODO:: add basic free-use with credit copyright
+		//TODO:: release ProxyScraper dev(Debug) and ProxyScraper release(Release) and HtmlAgilityPack.dll and premade queries.txt in release
 		
 		public static void Main (string[] args) {
 			
 			if (args.Length == 1) initialSearches = Int32.Parse(args[0]);
+			else if (args.Length == 2) { initialSearches = Int32.Parse(args[0]); threads = Int32.Parse(args[1]); }
 			
 			debug("--- Started ProxyScraper: " + DateTime.Now + " ---");
 			init();
@@ -83,8 +83,12 @@ namespace ProxyScraper {
 		public static void debug (string info) {
 			
 			#if DEBUG
-			using (StreamWriter sw = File.AppendText("debug.txt"))
-				sw.WriteLine(info);
+			retry:
+			try {
+				using (StreamWriter sw = File.AppendText("debug.txt"))
+					sw.WriteLine(info);
+			}
+			catch(Exception){Thread.Sleep(5);goto retry;}
 			#endif
 			
 		}

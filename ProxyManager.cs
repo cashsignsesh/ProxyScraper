@@ -102,11 +102,13 @@ namespace ProxyScraper {
 		
 		public void inputDebugProxy (string proxy) { this.proxiesDebug.Add(proxy); }
 		
+		#if DEBUG
 		/// <summary>
 		/// For debug
 		/// </summary>
 		/// <returns>The proxy list</returns>
 		public List<string> getProxies () { return this.proxies; }
+		#endif
 		
 	}
 	

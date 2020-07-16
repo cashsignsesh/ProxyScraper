@@ -16,6 +16,7 @@ using HtmlAgilityPack;
 using System.Threading;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace ProxyScraper {
 	
@@ -237,6 +238,29 @@ namespace ProxyScraper {
 		}
 		
 		public string getSearchQuery () { return this.searchQuery; }
+		
+		public List<String> threadedSearch (int start, int end) {
+			
+			List<String> results = new List<String>();
+			List<Task> tasks = new List<Task>();
+				
+			while (start != end+1) {
+				
+				tasks.Add(Task.Factory.StartNew(()=>{
+				                                              	
+				                                              	foreach (string s in search(start, start+1))
+				                                              		results.Add(s);
+				                                              
+				                                              }));
+				++start;
+				
+			}
+			
+			Task.WaitAll(tasks.ToArray());
+			foreach (Task tsk in tasks) tsk.Dispose();
+			return results;
+			
+		}
 		
 	}
 }	

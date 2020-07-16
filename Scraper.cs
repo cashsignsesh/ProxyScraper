@@ -15,6 +15,7 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace ProxyScraper {
 	
@@ -52,7 +53,7 @@ namespace ProxyScraper {
 			++this.searchIterations;
 			Program.cm.updateStatus(Status.SCRAPING);
 				
-			foreach (string s in sites) { Program.debug(s); if (!(Program.blacklist.Contains(s))) this._scrape(s); }
+			foreach (string s in sites) { Program.debug(s); if (!(Program.blacklist.Contains(s))) new Thread(()=>{this._scrape(s);}).Start(); }
 			
 			if (this.searchIterations == 2 || isDefaultSearchQuery) {
 				
