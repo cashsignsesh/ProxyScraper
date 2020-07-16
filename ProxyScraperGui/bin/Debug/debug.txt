@@ -1,0 +1,53 @@
+--- Started ProxyScraper: 7/16/2020 7:38:57 PM ---
+--- Started ProxyScraper: 7/16/2020 7:39:31 PM ---
+https://www.google.com/search?q=proxy+list
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 66
+https://www.google.com/search?q=proxy+list
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 66
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 78
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 78
+https://www.google.com/search?q=inurl%3Aproxies.txt
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 66
+https://www.google.com/search?q=inurl%3Asocks4.txt
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 66
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 78
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 78
+https://www.google.com/search?q=inurl%3Asocks4.txt&start=100
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 66
+https://www.google.com/search?q=inurl%3Asocks5.txt
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 66
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 78
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 78
+--- Started ProxyScraper: 7/16/2020 7:43:34 PM ---
+--- Started ProxyScraper: 7/16/2020 7:43:40 PM ---
+https://www.google.com/search?q=proxy+list
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 66
+System.Net.WebException: The remote server returned an error: (429) Too Many Requests.
+   at System.Net.HttpWebRequest.GetResponse()
+   at ProxyScraper.Searcher.search(Int32 start, Int32 end) in c:\Users\Elite\Documents\SharpDevelop Projects\ProxyScraper\ProxyScraperGui\Searcher.cs:line 78
